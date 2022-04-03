@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <!-- <link rel="stylesheet" href="./css/reset.css"> -->
+    <link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1>Ceng 3502</h1>
+            </div>
+            <div class="basket-div">
+                <a id="myBtn" onclick="addNewItem()" class="nav-btn btn-primary add-item-btn" href="#">+ Add New
+                    Item</a>
+                <a onclick="basketClick()" class="nav-btn btn-primary basket-btn" href="#">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span> Basket</span>
+                    <span id="sum-prices" class="price"> </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <form id="modalForm" action="">
+                        <span class="close">&times;</span>
+                        <div class="new-product">
+                            <div class="d-flex">
+                                <div class="new-product-image">
+                                    <input type="file" accept="image/*" data-role="image-upload">
+                                    <img id="new-product-image" />
+                                </div>
+                                <div class="d-flex f-column">
+                                    <input id="new-product-name" type="text" class="input"
+                                        placeholder="Enter the book name..." />
+                                    <textarea id="new-product-description" class="input"
+                                        placeholder="Enter the book description..."></textarea>
+                                    <input id="new-product-price" type="number" class="input"
+                                        placeholder="Enter the price..." />
+                                </div>
+                            </div>
+                            <button onclick="addToList()" id="add-new-product" class="button button-primary">Add to List</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="contact-form-general">
+                <div class="contact-form ">
+                    <form class="">
+                        <h2 class="d-flex justify-content-center">Contact Info</h2>
+                        <div class="form-group">
+                            <label class="form-label" for="fname">Name</label><br>
+                            <input type="text" id="name" name="name"><br>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="lname">Address</label><br>
+                            <input type="text" id="address" name="address"><br>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="lname">Zip Code</label><br>
+                            <input type="text" id="zcode" name="zcode"><br>
+                        </div>
+
+                        <a onclick="nextBtn()" class="contact-btn btn btn-primary">
+                            <span> Next </span>
+                        </a>
+                    </form>
+                </div>
+            </div>
+
+            <div class="payment-general">
+                <div class="tab-general">
+                    <h2 class="">Payment Info</h2>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'WireTransfer')">WireTransfer</button>
+                        <button class="tablinks" onclick="openCity(event, 'CreditCard')">CreditCard</button>
+                    </div>
+
+                    <div id="WireTransfer" class="tabcontent">
+                        <div class="contact-form d-none">
+                            <form class="">
+                                <div class="form-group">
+                                    <label class="form-label" for="fname">Name</label><br>
+                                    <input type="text" id="name" name="name"><br>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="lname">IBAN</label><br>
+                                    <input type="text" id="iban" name="iban"><br>
+                                </div>
+
+                                <a onclick="pay()" class="contact-btn btn btn-primary">
+                                    <span> Pay </span>
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="CreditCard" class="tabcontent">
+                        <div class="contact-form d-none">
+                            <form class="">
+                                <div class="form-group">
+                                    <label class="form-label" for="fname">Name on Card</label><br>
+                                    <input type="text" id="name" name="name"><br>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="lname">Card Number</label><br>
+                                    <input type="text" id="cardNumber" name="cardNumber"><br>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="lname">Exp Date</label><br>
+                                    <input type="month" id="expDate" name="expDate"><br>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="lname">Cvv</label><br>
+                                    <input type="text" id="cvv" name="cvv"><br>
+                                </div>
+
+                                <a onclick="pay()" class="contact-btn btn btn-primary">
+                                    <span> Pay </span>
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="books">
+                <div class="row book-row">
+                    <div class="col-md-4">
+                        <div class="card product-under">
+                            <img src="./images/book1.jpeg" alt="Avatar" style="width:100%">
+                            <div class="container">
+                                <h4><b class="productName">The Man Who Died Twice</b></h4>
+                                <p class="description">Richard Osman</p>
+                                <div class="price d-flex">
+                                    <p class="priceValue">60</p>
+                                    <p>TL</p>
+                                </div>
+                                <div class="add-basket btn btn-primary addToCart" data-product-id="1">
+                                    <span> Add </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card product-under">
+                            <img src="./images/book2.jpeg" alt="Avatar" style="width:100%">
+                            <div class="container">
+                                <h4><b class="productName">The Keeper Of Stories</b></h4>
+                                <p class="description">Public</p>
+                                <div class="price d-flex">
+                                    <p class="priceValue">10</p>
+                                    <p>TL</p>
+                                </div>
+                                <div class="add-basket btn btn-primary addToCart" data-product-id="2">
+                                    <span> Add </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card product-under">
+                            <img src="./images/book3.jpeg" alt="Avatar" style="width:100%">
+                            <div class="container">
+                                <h4><b class="productName">Feel Good Food</b></h4>
+                                <p class="description">HQr</p>
+                                <div class="price d-flex">
+                                    <p class="priceValue">120</p>
+                                    <p>TL</p>
+                                </div>
+                                <div class="add-basket btn btn-primary addToCart" data-product-id="3">
+                                    <span> Add </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="basket-general">
+            <div class="basket">
+                <div onclick="exit()" class="exit"><i class="fa-solid fa-square-xmark fa-2x"></i></div>
+                <ul id="buyItems">
+                    <h4 class="empty">Your shopping cart is empty</h4>
+
+                </ul>
+                <div class="d-flex justify-content-around" style="margin-top:20px; margin-bottom:10px;">
+                    <a onclick="continueShopping()" class="btn btn-primary" href="#">Continue Shopping</a>
+                    <a onclick="buyItems()" class="btn btn-primary" href="#">Buy Them</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <script src="./js/tabs.js"></script>
+    <script src="./js/custom.js"></script>
+    <script src="./js/shoppingCart.js"></script>
+</body>
+
+</html>
